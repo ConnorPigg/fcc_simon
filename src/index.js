@@ -1,7 +1,10 @@
 let buttons = [];
 let generated_buttons = [];
-let user_score = 0;
+let user_score = 1;
 let high_score = 0;
+let strict_mode_flag = true;
+$('#strict_mode_icon_on').show();
+$('#strict_mode_icon_off').hide();
 
 $('.simon_buttons').click(
   function() {
@@ -13,6 +16,7 @@ $('.simon_buttons').click(
     o.style.backgroundColor = "black";
     setTimeout(function() {
       o.style.backgroundColor = orig;
+      play_button(o);
       if (buttons.length == generated_buttons.length) {
         judge();
       }
@@ -22,8 +26,22 @@ $('.simon_buttons').click(
 
 $('#start_stop').click(
     function() {
-      generated_buttons = []
+      buttons = [];
+      generated_buttons = [];
       generate_button();
+    }
+);
+
+$('#strict_mode_selector').click(
+    function() {
+      strict_mode_flag = !strict_mode_flag;
+      if (strict_mode_flag) {
+        $('#strict_mode_icon_on').show();
+        $('#strict_mode_icon_off').hide();
+      } else {
+        $('#strict_mode_icon_on').hide();
+        $('#strict_mode_icon_off').show();
+      }
     }
 );
 
@@ -32,17 +50,31 @@ function judge() {
     let b = buttons.shift();
     if (generated_buttons[i] != b) {
       alert("WRONG! Pay attention");
-      if (user_score > high_score) {
+      if (!strict_mode_flag) {
+        alert("You can try again");
+        buttons = [];
+        read_buttons(0);
+        return;
+      }
+      if (user_score - 1 > high_score) {
         alert("You beat your high score.");
-        high_score = user_score;
+        high_score = user_score - 1;
         $('#high_score').children(0).text(high_score);
       }
-      user_score = 0;
+      user_score = 1;
       $('#current_score').children(0).text(user_score);
       generated_buttons = [];
       buttons = [];
       return false;
     }
+  }
+  if (user_score == 20) {
+    alert("You won! Congrats.");
+    high_score = user_score;
+    $('#high_score').children(0).text(high_score);
+    buttons = [];
+    generated_buttons = [];
+    return;
   }
   console.log("Nice job!");
   user_score++;
@@ -72,6 +104,13 @@ function read_buttons(i) {
   o.style.backgroundColor = "white";
   setTimeout(function() {
     o.style.backgroundColor = orig;
+    play_button(o);
     read_buttons(i + 1);
   }, 600);
+}
+
+function play_button(some_button) {
+  let audio_e = some_button.children[1];
+  audio_e.load();
+  audio_e.play();
 }
