@@ -1,0 +1,58 @@
+.simon_buttons {
+  border: 2px solid black;
+  height: 100px;
+}
+.simon_buttons h3 {
+  background-color: white;
+  color: black;
+  display: inline-block;
+}
+
+#simon_button_zero {
+  border-radius: 100px 0px 0px 0px;
+  background-color: darkorange;
+}
+
+#simon_button_zero:active {
+  background-color: orange;
+}
+
+#simon_button_one {
+  border-radius: 0px 100px 0px 0px;
+  background-color: darkgreen;
+}
+
+#simon_button_one:active {
+  background-color: green;
+}
+
+#simon_button_two:active {
+  background-color: grey;
+}
+
+#simon_button_two {
+  border-radius: 0px 0px 0px 100px;
+  background-color: darkgrey;
+}
+
+#simon_button_three {
+  border-radius: 0px 0px 100px 0px;
+  background-color: darkblue;
+}
+
+#simon_button_three:active {
+  background-color: blue;
+}
+
+.score_board {
+  background-color: orange;
+  color: blue;
+  border: 2px solid blue;
+}
+
+h1 {
+  background-color: orange;
+  color: blue;
+}
+
+/*# sourceMappingURL=build/index.css.map */
