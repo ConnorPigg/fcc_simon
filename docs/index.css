@@ -3,9 +3,12 @@
   height: 100px;
 }
 .simon_buttons h3 {
-  background-color: white;
-  color: black;
+  background-color: orange;
+  color: blue;
+  border-radius: 90%;
   display: inline-block;
+  width: 4em;
+  height: 2em;
 }
 
 #simon_button_zero {
@@ -51,6 +54,11 @@
 }
 
 h1 {
+  background-color: orange;
+  color: blue;
+}
+
+body {
   background-color: orange;
   color: blue;
 }

@@ -6,9 +6,17 @@ let high_score = 0;
 $('.simon_buttons').click(
   function() {
     buttons.push($(this)[0]);
-    if (buttons.length == generated_buttons.length) {
-      judge();
-    }
+    let o = $(this)[0];
+    let orig = o.style.backgroundColor;
+    let cs = document.defaultView.getComputedStyle(o, null);
+    orig = cs.getPropertyValue('background-color');
+    o.style.backgroundColor = "black";
+    setTimeout(function() {
+      o.style.backgroundColor = orig;
+      if (buttons.length == generated_buttons.length) {
+        judge();
+      }
+    }, 300);
   }
 );
 
