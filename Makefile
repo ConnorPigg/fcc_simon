@@ -1,15 +1,15 @@
 .PHONY: clean, all
 
-all: build/index.html build/index.css build/index.js
+all: docs/index.html docs/index.css docs/index.js
 
-build/index.js: src/index.js
-		cp src/index.js build/index.js
+docs/index.js: src/*.js
+		cp src/index.js docs/index.js
 
-build/index.html: src/*.pug
-		pug src -Po build
+docs/index.html: src/*.pug
+		pug src -Po docs
 
-build/index.css: src/*.scss
-		sass src/index.scss build/index.css
+docs/index.css: src/*.scss
+		sass src/index.scss docs/index.css
 
 clean:
-		rm build/*
+		rm docs/*
